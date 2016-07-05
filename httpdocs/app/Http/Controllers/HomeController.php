@@ -29,6 +29,7 @@ class HomeController extends Controller
         ];
 
         return view('home.index', [
+            'timezone' => $companyModel->getConfig()['timezone'],
             'companyList' => $this->generateOptionsHtml($companyList, $excludedCompany, false),
             'timeFlame' => $this->generateOptionsHtml($timeList, $timeFlame),
             'dataFilter' => $this->generateOptionsHtml($dataFilterList, $dataFilter),

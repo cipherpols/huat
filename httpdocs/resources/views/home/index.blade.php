@@ -82,9 +82,10 @@
               @foreach ($resultList as $company)
               <tr>
                 <?php
-                $var = $company['DateTime']->toDateTime();
-                $date = $var->format('d M Y');
-                $time = $var->format('g:i:s A');
+                $dateTime = $company['DateTime']->toDateTime();
+                $var = $dateTime->setTimezone(new DateTimeZone($timezone));;
+                $date = $dateTime->format('d M Y');
+                $time = $dateTime->format('g:i:s A');
                 ?>
                 <td>{{ $date }}</td>
                 <td>{{ $time }}</td>

@@ -13,10 +13,12 @@ class Company
 {
     private $client;
     private $collection;
+    private $config;
 
     public function __construct()
     {
-        $config = require_once __DIR__ . "/../config.php";
+        $this->config = require_once __DIR__ . "/../config.php";
+        $config = $this->config;
         $databaseName = $config['database']['name'];
         $index = $config['database']['companyTable'];
         $this->client = new \MongoDB\Client($config['database']['host']);
@@ -24,6 +26,14 @@ class Company
         $this->collection = $this->client->$databaseName->$index;
     }
 
+    /**
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+    
     /**
      * @param $dayPeriod
      * @param $dataFilter

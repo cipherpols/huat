@@ -52,9 +52,13 @@ class Company
      * @param $dataFilter
      * @param $excludedCompany
      * @return array
+     * @throws \Exception
      */
     public function getQueryFromFilter($dayPeriod, $dataFilter, $excludedCompany)
     {
+        if ($dayPeriod > 90) {
+            throw new \Exception('Invalid day period');
+        }
         $time = strtotime('-' . $dayPeriod . ' days');
 
         $filter = [

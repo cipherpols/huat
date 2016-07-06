@@ -8,8 +8,7 @@
         "php": ">=5.5.9",
         "mongodb/mongodb": "^1.0.0",
         "laravel/lumen-framework": "5.2.*",
-        "vlucas/phpdotenv": "~2.2",
-        "laravelcollective/html": "5.2.*"
+        "vlucas/phpdotenv": "~2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -23,7 +22,6 @@
     "autoload-dev": {
         "classmap": [
             "tests/",
-            "database/"
         ]
     },
     "scripts": {

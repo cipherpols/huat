@@ -60,7 +60,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>H</b>UT</span>
       <!-- logo for regular state and mobile devices -->
@@ -85,14 +85,14 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="dist/img/user1-128x128.jpg" class="user-image" alt="Yi Xian">
+              <img src="{{ app('url')->asset('dist/img/user1-128x128.jpg') }}" class="user-image" alt="Yi Xian">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">Yi Xian</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user1-128x128.jpg" class="img-circle" alt="Yi Xian">
+                <img src="{{ app('url')->asset('dist/img/user1-128x128.jpg') }}" class="img-circle" alt="Yi Xian">
                 <p>
                   Yi Xian - Data Analyser
                 </p>
@@ -114,9 +114,7 @@ desired effect
   </header>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
       @yield('content')
-    
   </div>
   <!-- /.content-wrapper -->
 

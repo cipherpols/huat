@@ -1,6 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
+<script>
+var showPopup = function(type, hash) {
+    var url = "http://infopub.sgx.com/Apps?A=COW_CorpAnnouncement_Content&B=" + type + "&F=" + hash;
+    var popWindow = window.open(url,'SGX','height=700,width=700,scrollbars=1');
+    popWindow.focus(); 
+    return false;
+}
+</script>
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -18,7 +26,7 @@
 
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Data was pulled from <a href="http://www.sgx.com/wps/portal/sgxweb/home/company_disclosure/company_announcements">SGX Portal</a></h3>
+            <h3 class="box-title">Data was pulled from <a href="http://www.sgx.com/wps/portal/sgxweb/home/company_disclosure/company_announcements" target="_blank">SGX Portal</a></h3>
           </div>
 
       <div class="box-body">
@@ -91,7 +99,7 @@
                 <td>{{ $time }}</td>
                 <td>{{ $company['IssuerName'] }}</td>
                 <td>{{ $company['SecurityName'] }}</td>
-                <td>{{ $company['AnnTitle'] }}</td>
+                <td><a href="javascript:;" onclick="showPopup('{{ $company['SearchTimeGroup'] }}', '{{ $company['key'] }}')">{{ $company['AnnTitle'] }}</a></td>
               </tr>
               @endforeach
               </tbody>

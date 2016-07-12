@@ -2,12 +2,12 @@
 
 @section('content')
 <script>
-var showPopup = function(type, hash) {
-    var url = "http://infopub.sgx.com/Apps?A=COW_CorpAnnouncement_Content&B=" + type + "&F=" + hash;
-    var popWindow = window.open(url,'SGX','height=700,width=700,scrollbars=1');
-    popWindow.focus(); 
-    return false;
-}
+    var showPopup = function(type, hash) {
+        var url = "http://infopub.sgx.com/Apps?A=COW_CorpAnnouncement_Content&B=" + type + "&F=" + hash;
+        var popWindow = window.open(url, 'SGX', 'height=700,width=700,scrollbars=1');
+        popWindow.focus();
+        return false;
+    };
 </script>
 <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,8 +34,8 @@ var showPopup = function(type, hash) {
         <form method="post">
           <div class="col-md-4">
             <div class="form-group">
-              <label>Time Flame</label>
-              <select name="time-flame" class="form-control select2" style="width: 100%;">
+              <label for="time-flame">Time Flame</label>
+              <select id="time-flame" name="time-flame" class="form-control select2" style="width: 100%;">
                 {!! $timeFlame !!}
               </select>
             </div>
@@ -52,8 +52,8 @@ var showPopup = function(type, hash) {
 
           <div class="col-md-4">
             <div class="form-group">
-              <label>Company to exclude</label>
-              <select name="excluded-company[]" class="form-control select2" multiple="multiple" data-placeholder="Select a company" style="width: 100%;">
+              <label for="excluded-company">Company to exclude</label>
+              <select id="excluded-company" name="excluded-company[]" class="form-control select2" multiple="multiple" data-placeholder="Select a company" style="width: 100%;">
                 {!! $companyList !!}
               </select>
             </div>
@@ -63,7 +63,7 @@ var showPopup = function(type, hash) {
           <div class="col-md-12">
             <div class="form-group">
               <button type="submit" class="btn btn-lg btn-primary">Filter data</button>
-              <button type="submit" class="btn btn-lg btn-primary">Reset filter(s)</button>
+              <a href="/" class="btn btn-lg btn-primary">Reset filter(s)</a>
             </div>
             <!-- /.form-group -->
 
@@ -91,7 +91,7 @@ var showPopup = function(type, hash) {
               <tr>
                 <?php
                 $dateTime = $company['DateTime']->toDateTime();
-                $var = $dateTime->setTimezone(new DateTimeZone($timezone));;
+                $dateTime->setTimezone(new DateTimeZone($timezone));
                 $date = $dateTime->format('d M Y');
                 $time = $dateTime->format('g:i:s A');
                 ?>

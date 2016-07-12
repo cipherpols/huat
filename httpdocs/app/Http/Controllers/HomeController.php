@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * This file is part of the Huat package.
+ */
+
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 
+/**
+ * Class HomeController
+ * @package App\Http\Controllers
+ * @author Sabo Duy Nguyen <nhduy88@gmail.com>
+ * @website http://cipherpols.com/
+ */
 class HomeController extends Controller
 {
     public function index(Request $request)
@@ -23,9 +34,9 @@ class HomeController extends Controller
 
         $dataFilterList = [
             '' => 'All',
-            'mna' => 'M&amp;A',
-            'hot_mna' => 'Hot M&amp;A',
-            'trading_halt' => 'Trading Halt',
+            Company::MNA => 'M&amp;A',
+            Company::HOT_MNA => 'Hot M&amp;A',
+            Company::TRADING_HALT => 'Trading Halt',
         ];
 
         return view('home.index', [
@@ -33,7 +44,7 @@ class HomeController extends Controller
             'companyList' => $this->generateOptionsHtml($companyList, $excludedCompany, false),
             'timeFlame' => $this->generateOptionsHtml($timeList, $timeFlame),
             'dataFilter' => $this->generateOptionsHtml($dataFilterList, $dataFilter),
-            'resultList' => $companyModel->search($timeFlame, $dataFilter, $excludedCompany)->toArray(),
+            'resultList' => $companyModel->search($timeFlame, $dataFilter, $excludedCompany),
         ]);
     }
 
@@ -59,7 +70,7 @@ class HomeController extends Controller
         foreach ($list as $value => $item) {
             $value = $useIndexAsValue ? $value : $item;
             $selectedString = $hasSelected && in_array($value, $selected) ? ' selected="selected"' : '';
-            $html .= sprintf('<option value="%s"%s>%s</option>', $value, $selectedString, $item);
+            $html .= sprintf('<option value="%s" %s>%s</option>', $value, $selectedString, $item);
         }
 
         return $html;

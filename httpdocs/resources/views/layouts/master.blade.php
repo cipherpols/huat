@@ -72,14 +72,6 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Fetch data&nbsp;&nbsp; <i class="fa fa-refresh"></i>
-              <span class="label label-success">9</span>
-            </a>
-          </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -99,9 +91,6 @@ desired effect
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <!-- <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat"><i class="fa fa-refresh"></i> Get data </a>
-                </div> -->
                 <div class="pull-right">
                   <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
@@ -122,7 +111,7 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Powered by CP with love
+      Powered by <a href="http://cipherpols.com/" title="CP with love" target="_blank">CP with love</a>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2016 <a href="#">Huat</a>.</strong> All rights reserved.

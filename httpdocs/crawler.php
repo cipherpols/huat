@@ -45,26 +45,29 @@ $valid = true;
 $databaseName = $config['database']['name'];
 $index = $config['database']['companyTable'];
 $collection = (new MongoDB\Client($config['database']['host']))->$databaseName->$index;
+$agent= 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36';
 
 echo "Started at " . date('Y-m-d H:i:s') . PHP_EOL;
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_VERBOSE, true);
+curl_setopt($ch, CURLOPT_USERAGENT, $agent);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_TIMEOUT, '100');
+
 while ($valid) {
 	$startTime = microtime(true);
-	$ch = curl_init();
 	$startForm = $start == 0 ? '' : (($start * $itemPerpage) + 1);
 	$url = sprintf($urlPattern, $indexToCrawl, $startForm, $itemPerpage);
 	$url = sprintf($urlPatternProxy, urlencode($url));
 	//
 	echo PHP_EOL . PHP_EOL . "[x] " . $url . PHP_EOL;
-	curl_setopt($ch, CURLOPT_URL, $url); 
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_TIMEOUT, '100');
+	curl_setopt($ch, CURLOPT_URL, $url);
 	$content = trim(curl_exec($ch));
-	curl_close($ch);
 	$content = substr($content, 4);
 	$items = json_decode($content, true);
 	
-	// var_dump(count($items['items']));
-	// die;
 	if ($items === null) {
 		echo '[x] END' . PHP_EOL;
 		$valid = false;
@@ -106,5 +109,6 @@ while ($valid) {
 	echo sprintf('Inserted %d and Updated %d document(s) in %.3f s' . PHP_EOL, $totalInsert, $totalUpdated, $end);
 	$start++;
 }
+curl_close($ch);
 echo "Finished at " . date('Y-m-d H:i:s') . PHP_EOL;
 die;
